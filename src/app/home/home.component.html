@@ -1,0 +1,57 @@
+<main>
+  <header>questionnaire</header>
+  <section class="input_container">
+    <div class="input-group">
+      <select
+        class="form-select"
+        id="inputGroupSelect04 teamInput"
+        aria-label="Example select with button addon"
+        name="category"
+        id="categoryInput"
+        [(ngModel)]="question.category"
+      >
+        <option [value] = "null" disabled>Please select a category</option>
+        <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+      </select>
+      <select
+        class="form-select"
+        id="inputGroupSelect04 teamInput"
+        aria-label="Example select with button addon"
+        name="type"
+        id="typeInput"
+        [(ngModel)]="question.type"
+
+      >
+        <option [value] = "null" disabled>Please select type of question</option>
+        <option value="" >Any Type</option>
+        <option value="multiple" >Multiple Choice</option>
+        <option value="boolean" >True / False</option>
+      </select>
+      <button (click)="submitQuestion()" class="btn btn-outline-secondary" id="qetQuestions" type="button">
+        Submit
+      </button>
+    </div>
+  </section>
+  <section class="tableContent" *ngIf="results && results.length">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Questions</th>
+          <th scope="col">Category</th>
+          <th scope="col">Type</th>
+          <th scope="col">Correct Answer</th>
+          <th scope="col">Difficulty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of results">
+          <th scope="row">{{i.question}}</th>
+          <td>{{i.category}}</td>
+          <td>{{i.type}}</td>
+          <td>{{i.correct_answer}}</td>
+          <td><a (click)="routeToDetail(i.difficulty)">{{i.difficulty | difficultyPipe}}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
