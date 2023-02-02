@@ -1,10 +1,10 @@
 <main>
   <section class="questionContainer">
     <div *ngFor="let i of results">
-      <div class="question" *ngIf="i.show">
+      <div [@enterAnimation] class="question" *ngIf="i.show" >
         {{ i.question }}
       </div>
-      <div *ngIf="i.show">
+      <div [@enterAnimation] *ngIf="i.show" >
         <span *ngFor="let options of i.opt">
           <button
             *ngFor="let content of options.content"

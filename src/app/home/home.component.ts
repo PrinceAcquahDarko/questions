@@ -34,9 +34,25 @@ export class HomeComponent implements OnInit {
     }
     this._as
       .getQuestions(this.question.category, this.question.type, null)
-      .pipe(map((x) => x.results))
+      .pipe(
+        map((response) => {
+          const questions = response['results'].map((question) => {
+            return {
+              ...question,
+              question: this._as.decodeHtmlEntity(question['question']),
+              correct_answer: this._as.decodeHtmlEntity(question['correct_answer']),
+              incorrect_answers: question['incorrect_answers'].map((answer) =>
+                this._as.decodeHtmlEntity(answer)
+              ),
+            };
+          });
+
+          return questions;
+        })
+      )
       .subscribe((res) => {
         this.results = res;
+        console.log(res, 'from res entiry')
       });
   }
 
@@ -46,4 +62,6 @@ export class HomeComponent implements OnInit {
     this._as.selectedQuestion = i;
     this._router.navigate(['questions', i.difficulty]);
   }
+
+ 
 }

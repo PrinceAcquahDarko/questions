@@ -3,11 +3,20 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { AppService } from '../appService/app.service';
 import { content, Iresults } from '../interface';
+import { style, transition, trigger, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
+  animations: [
+    trigger('enterAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('700ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class DetailComponent implements OnInit {
   showButton = false;
@@ -31,7 +40,24 @@ export class DetailComponent implements OnInit {
         this._as.question.type,
         this.level
       )
-      .pipe(map((x) => x.results))
+      .pipe(
+        map((response) => {
+          const questions = response['results'].map((question) => {
+            return {
+              ...question,
+              question: this._as.decodeHtmlEntity(question['question']),
+              correct_answer: this._as.decodeHtmlEntity(
+                question['correct_answer']
+              ),
+              incorrect_answers: question['incorrect_answers'].map((answer) =>
+                this._as.decodeHtmlEntity(answer)
+              ),
+            };
+          });
+
+          return questions;
+        })
+      )
       .subscribe((response) => {
         let res = this.manipulateQtn(response);
         res.forEach((i, index) => {

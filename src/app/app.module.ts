@@ -6,19 +6,20 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { DetailModule } from './detail/detail.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HomeModule,
     DetailModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

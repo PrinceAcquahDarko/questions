@@ -4,7 +4,6 @@ import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DifficultyPipe } from '../difficulty.pipe';
-
 const routes: Routes = [
   {
     path: '',

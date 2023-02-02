@@ -18,7 +18,7 @@ export class AppService {
     type: null,
   };
 
-  selectedQuestion!:Iresults
+  selectedQuestion!: Iresults;
 
   constructor(private http: HttpClient) {}
 
@@ -61,5 +61,12 @@ export class AppService {
     }
 
     return throwError(message);
+  }
+
+  decodeHtmlEntity(str: string) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = str;
+
+    return txt.value;
   }
 }
