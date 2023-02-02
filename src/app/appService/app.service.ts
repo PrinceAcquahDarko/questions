@@ -5,7 +5,7 @@ import {
   HttpErrorResponse,
   HttpParams,
 } from '@angular/common/http';
-import { IGetQuestions, question } from '../interface';
+import { IGetQuestions, question, Iquestions, Iresults } from '../interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,12 @@ import { IGetQuestions, question } from '../interface';
 export class AppService {
   category_url = 'https://opentdb.com/api_category.php';
   questions_url = 'https://opentdb.com/api.php';
+  question: Iquestions = {
+    category: null,
+    type: null,
+  };
+
+  selectedQuestion!:Iresults
 
   constructor(private http: HttpClient) {}
 
@@ -24,7 +30,8 @@ export class AppService {
 
   getQuestions(
     category: number | null,
-    typeOfQuestion: number | null
+    typeOfQuestion: number | null,
+    level: string | null
   ): Observable<question> {
     let params = new HttpParams();
     params = params.append('amount', 10);
@@ -33,6 +40,10 @@ export class AppService {
     }
     if (typeOfQuestion) {
       params = params.append('type', typeOfQuestion);
+    }
+
+    if (level) {
+      params = params.append('difficulty', level);
     }
 
     return this.http

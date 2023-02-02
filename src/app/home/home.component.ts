@@ -24,25 +24,26 @@ export class HomeComponent implements OnInit {
       .pipe(map((x) => x.trivia_categories))
       .subscribe((res) => {
         this.categories = res;
-        console.log(res, 'from respond');
       });
   }
 
   submitQuestion() {
     if (this.question.type === null || this.question.category === null) {
       alert('please select options and proceed');
+      return;
     }
     this._as
-      .getQuestions(this.question.category, this.question.type)
+      .getQuestions(this.question.category, this.question.type, null)
       .pipe(map((x) => x.results))
       .subscribe((res) => {
-        // this.categories = res;
-        console.log(res, 'from resquestpond');
         this.results = res;
       });
   }
 
-  routeToDetail(difficulty: string) {
-    this._router.navigate(['questions', difficulty]);
+  routeToDetail(i: Iresults) {
+    this._as.question.category = this.question.category;
+    this._as.question.type = this.question.type;
+    this._as.selectedQuestion = i;
+    this._router.navigate(['questions', i.difficulty]);
   }
 }

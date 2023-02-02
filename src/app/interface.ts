@@ -24,4 +24,22 @@ export interface Iresults {
   incorrect_answers: string[];
   question: string;
   type: string;
+  opt?: options[]
+  id?: number
+  show?: boolean
+  correct?:boolean | null
+}
+
+
+
+export interface options {
+  content: content[];
+
+}
+
+
+export interface content {
+  text: string;
+  selected?: boolean;
+  id: number;
 }

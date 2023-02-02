@@ -1,1 +1,40 @@
-<p>detail works!</p>
+<main>
+  <section class="questionContainer">
+    <div *ngFor="let i of results">
+      <div class="question" *ngIf="i.show">
+        {{ i.question }}
+      </div>
+      <div *ngIf="i.show">
+        <span *ngFor="let options of i.opt">
+          <button
+            *ngFor="let content of options.content"
+            [ngClass]="{
+              selected: content.selected,
+              notright: !i.correct && showResults && content.selected,
+              right: content.text === i.correct_answer && showResults
+            }"
+            class="btn btn-outline-success"
+            (click)="selectOption(content, i)"
+          >
+            {{ content.text }}
+          </button>
+        </span>
+      </div>
+    </div>
+
+    <section *ngIf="showResults" class="displayResults">
+      <div
+        [ngStyle]="{
+          'background-color': total_results >= 5 ? 'green' : 'red'
+        }"
+      >
+        You scored {{ total_results }} out of {{ results.length }}
+      </div>
+    </section>
+    <div *ngIf="showButton" class="submitBtn">
+      <button (click)="submitAnswers()" class="btn btn-secondary">
+        submit
+      </button>
+    </div>
+  </section>
+</main>

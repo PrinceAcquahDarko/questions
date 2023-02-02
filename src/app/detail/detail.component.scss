@@ -1,0 +1,51 @@
+.questionContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 3em;
+}
+
+.question,
+button {
+  margin-bottom: 1em;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.submitBtn {
+  margin-top: 3em !important;
+  width: 80%;
+  margin: auto;
+}
+
+.submitBtn > button {
+  width: 100%;
+}
+
+.displayResults {
+  margin-top: 2em !important;
+  margin-bottom: 2em !important;
+  width: 60%;
+  margin: auto;
+}
+
+.displayResults > div {
+  width: 100%;
+  background-color: red;
+  text-align: center;
+}
+
+.notright {
+  background-color: red !important;
+}
+
+.right {
+  background-color: #198754;
+  color: #fff;
+}
+
+.selected {
+  background-color: #198754;
+  color: #fff;
+}
