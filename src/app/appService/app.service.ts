@@ -5,7 +5,7 @@ import {
   HttpErrorResponse,
   HttpParams,
 } from '@angular/common/http';
-import { IGetQuestions, question, Iquestions, Iresults } from '../interface';
+import { IGetQuestions, Iquestion, Iquestions, Iresults } from '../interface';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +32,7 @@ export class AppService {
     category: number | null,
     typeOfQuestion: number | null,
     level: string | null
-  ): Observable<question> {
+  ): Observable<Iquestion> {
     let params = new HttpParams();
     params = params.append('amount', 10);
     if (category) {
@@ -47,7 +47,7 @@ export class AppService {
     }
 
     return this.http
-      .get<question>(this.questions_url, { params })
+      .get<Iquestion>(this.questions_url, { params })
       .pipe(catchError(this.handleError));
   }
 

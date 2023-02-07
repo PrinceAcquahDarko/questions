@@ -36,12 +36,12 @@ export class HomeComponent implements OnInit {
       .getQuestions(this.question.category, this.question.type, null)
       .pipe(
         map((response) => {
-          const questions = response['results'].map((question) => {
+          const questions = response['results'].map((question:Iresults) => {
             return {
               ...question,
               question: this._as.decodeHtmlEntity(question['question']),
               correct_answer: this._as.decodeHtmlEntity(question['correct_answer']),
-              incorrect_answers: question['incorrect_answers'].map((answer) =>
+              incorrect_answers: question['incorrect_answers'].map((answer:string) =>
                 this._as.decodeHtmlEntity(answer)
               ),
             };

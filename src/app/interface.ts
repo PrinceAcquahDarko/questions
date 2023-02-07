@@ -12,7 +12,7 @@ export interface Iquestions {
   type: null | number;
 }
 
-export interface question {
+export interface Iquestion {
   response_code: number;
   results: Iresults[];
 }
@@ -24,21 +24,17 @@ export interface Iresults {
   incorrect_answers: string[];
   question: string;
   type: string;
-  opt?: options[]
-  id?: number
-  show?: boolean
-  correct?:boolean | null
+  opt?: Ioptions[];
+  id?: number;
+  show?: boolean;
+  correct?: boolean | null;
 }
 
-
-
-export interface options {
-  content: content[];
-
+export interface Ioptions {
+  content: Icontent[];
 }
 
-
-export interface content {
+export interface Icontent {
   text: string;
   selected?: boolean;
   id: number;

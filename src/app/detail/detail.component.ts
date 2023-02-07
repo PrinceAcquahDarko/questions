@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { AppService } from '../appService/app.service';
-import { content, Iresults } from '../interface';
+import { Icontent, Iresults } from '../interface';
 import { style, transition, trigger, animate } from '@angular/animations';
 
 @Component({
@@ -42,14 +42,14 @@ export class DetailComponent implements OnInit {
       )
       .pipe(
         map((response) => {
-          const questions = response['results'].map((question) => {
+          const questions = response['results'].map((question:Iresults) => {
             return {
               ...question,
               question: this._as.decodeHtmlEntity(question['question']),
               correct_answer: this._as.decodeHtmlEntity(
                 question['correct_answer']
               ),
-              incorrect_answers: question['incorrect_answers'].map((answer) =>
+              incorrect_answers: question['incorrect_answers'].map((answer:string) =>
                 this._as.decodeHtmlEntity(answer)
               ),
             };
@@ -95,7 +95,7 @@ export class DetailComponent implements OnInit {
       });
   }
 
-  selectOption(options: content, results: Iresults) {
+  selectOption(options: Icontent, results: Iresults) {
     if (!this.showResults) {
       let responds = this.results.filter((i) => i.id === options.id);
       responds.forEach((res) => {
