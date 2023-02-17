@@ -30,7 +30,7 @@ export class AppService {
 
   getQuestions(
     category: number | null,
-    typeOfQuestion: number | null,
+    typeOfQuestion: string | null,
     level: string | null
   ): Observable<Iquestion> {
     let params = new HttpParams();

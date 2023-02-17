@@ -9,7 +9,7 @@ export interface Icategories {
 
 export interface Iquestions {
   category: null | number;
-  type: null | number;
+  type: null | string;
 }
 
 export interface Iquestion {

@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit {
   }
 
   submitQuestion() {
-    if (this.question.type === null || this.question.category === null) {
+    if (this.question.type === null || !this.question.category) {
       alert('please select options and proceed');
       return;
-    }
+    } 
     this._as
       .getQuestions(this.question.category, this.question.type, null)
       .pipe(

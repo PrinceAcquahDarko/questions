@@ -42,15 +42,15 @@ export class DetailComponent implements OnInit {
       )
       .pipe(
         map((response) => {
-          const questions = response['results'].map((question:Iresults) => {
+          const questions = response['results'].map((question: Iresults) => {
             return {
               ...question,
               question: this._as.decodeHtmlEntity(question['question']),
               correct_answer: this._as.decodeHtmlEntity(
                 question['correct_answer']
               ),
-              incorrect_answers: question['incorrect_answers'].map((answer:string) =>
-                this._as.decodeHtmlEntity(answer)
+              incorrect_answers: question['incorrect_answers'].map(
+                (answer: string) => this._as.decodeHtmlEntity(answer)
               ),
             };
           });
@@ -124,6 +124,7 @@ export class DetailComponent implements OnInit {
     }
   }
 
+  //so this is basically to set the question that was selected as the first question
   manipulateQtn(res: Iresults[]) {
     let response;
     let index = res.findIndex(

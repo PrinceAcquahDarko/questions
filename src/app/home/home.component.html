@@ -10,7 +10,7 @@
         id="categoryInput"
         [(ngModel)]="question.category"
       >
-        <option [value]="null" disabled>Please select a category</option>
+        <option value="null" disabled>Please select a category</option>
         <option *ngFor="let c of categories" [value]="c.id">
           {{ c.name }}
         </option>
@@ -23,7 +23,7 @@
         id="typeInput"
         [(ngModel)]="question.type"
       >
-        <option [value]="null" disabled>Please select type of question</option>
+        <option value="null" disabled>Please select type of question</option>
         <option value="">Any Type</option>
         <option value="multiple">Multiple Choice</option>
         <option value="boolean">True / False</option>
